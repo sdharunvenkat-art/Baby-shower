@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Confetti Dreamland — Baby Shower Celebration</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Nunito:wght@300;400;600;700;800&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --baby-blue: #A8D8EA;
+    --soft-pink: #FFB7C5;
+    --lavender: #C9B8E8;
+    --mint: #B5EAD7;
+    --peach: #FFDAB9;
+    --cream: #FFF8F0;
+    --yellow: #FFF3B0;
+    --white: #FFFFFF;
+    --warm-gold: #F7C59F;
+    --deep-lavender: #9B89C4;
+    --text-dark: #4A3F5C;
+    --text-mid: #7A6D8A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    font-family:'Nunito',sans-serif;
+    color:var(--text-dark);
+    overflow-x:hidden;
+  }
+
+  /* ─── MUSIC BUTTON ─── */
+  #musicBtn{
+    position:fixed;top:20px;right:20px;z-index:9999;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(10px);
+    border:2px solid var(--lavender);
+    border-radius:50px;
+    padding:10px 18px;
+    cursor:pointer;
+    font-family:'Nunito',sans-serif;
+    font-weight:700;font-size:13px;
+    color:var(--deep-lavender);
+    display:flex;align-items:center;gap:8px;
+    box-shadow:0 4px 20px rgba(155,137,196,0.25);
+    transition:all 0.3s;
+  }
+  #musicBtn:hover{transform:scale(1.05);box-shadow:0 6px 28px rgba(155,137,196,0.4);}
+  .music-icon{font-size:18px;animation:musicPulse 2s infinite;}
+  @keyframes musicPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+
+  /* ─── HERO ─── */
+  #hero{
+    position:relative;min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    overflow:hidden;
+    background:linear-gradient(135deg,#FFF0F8 0%,#EDE7FF 35%,#E0F4FF 70%,#E8FFF5 100%);
+  }
+  .hero-canvas{position:absolute;inset:0;pointer-events:none;}
+  .hero-content{
+    position:relative;z-index:10;
+    text-align:center;padding:40px 20px;
+  }
+  .hero-eyebrow{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--soft-pink),var(--lavender));
+    color:#fff;
+    font-family:'Nunito',sans-serif;
+    font-weight:800;font-size:12px;
+    letter-spacing:3px;text-transform:uppercase;
+    padding:8px 24px;border-radius:50px;
+    margin-bottom:28px;
+    animation:fadeSlideUp 1s ease both;
+    box-shadow:0 4px 18px rgba(200,150,220,0.3);
+  }
+  .hero-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(52px,9vw,120px);
+    font-weight:800;
+    line-height:1;
+    background:linear-gradient(135deg,#D4A8E0,#F7A8C0,#A8D4F0,#A8E0C8);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation:fadeSlideUp 1s 0.2s ease both;
+    margin-bottom:8px;
+  }
+  .hero-subtitle-script{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(28px,4vw,52px);
+    color:var(--deep-lavender);
+    animation:fadeSlideUp 1s 0.35s ease both;
+    margin-bottom:24px;
+  }
+  .hero-tagline{
+    font-size:clamp(15px,2vw,20px);
+    color:var(--text-mid);
+    font-weight:600;
+    letter-spacing:1px;
+    animation:fadeSlideUp 1s 0.5s ease both;
+    margin-bottom:48px;
+  }
+  .hero-date-pill{
+    display:inline-flex;align-items:center;gap:16px;
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(14px);
+    border:2px solid rgba(200,180,230,0.4);
+    border-radius:100px;
+    padding:16px 36px;
+    animation:fadeSlideUp 1s 0.65s ease both;
+    box-shadow:0 8px 32px rgba(155,137,196,0.2);
+  }
+  .date-item{display:flex;flex-direction:column;align-items:center;}
+  .date-item .val{
+    font-family:'Playfair Display',serif;
+    font-size:28px;font-weight:700;
+    color:var(--text-dark);
+  }
+  .date-item .lbl{font-size:11px;color:var(--text-mid);text-transform:uppercase;letter-spacing:2px;}
+  .date-sep{width:1px;height:40px;background:var(--lavender);opacity:0.5;}
+  .hero-cta{
+    margin-top:40px;
+    animation:fadeSlideUp 1s 0.8s ease both;
+    display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--lavender),var(--soft-pink));
+    color:#fff;border:none;
+    padding:16px 40px;border-radius:50px;
+    font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;
+    cursor:pointer;text-decoration:none;
+    box-shadow:0 8px 28px rgba(200,150,200,0.4);
+    transition:all 0.3s;display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(200,150,200,0.5);}
+  .btn-secondary{
+    background:rgba(255,255,255,0.8);
+    color:var(--deep-lavender);
+    border:2px solid var(--lavender);
+    padding:16px 40px;border-radius:50px;
+    font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;
+    cursor:pointer;text-decoration:none;
+    backdrop-filter:blur(8px);
+    transition:all 0.3s;display:inline-block;
+  }
+  .btn-secondary:hover{transform:translateY(-3px);background:var(--lavender);color:#fff;}
+  .scroll-hint{
+    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    animation:fadeSlideUp 1s 1.2s ease both;
+  }
+  .scroll-hint span{font-size:11px;color:var(--text-mid);letter-spacing:2px;text-transform:uppercase;}
+  .scroll-arrow{
+    width:28px;height:28px;border-right:2px solid var(--lavender);border-bottom:2px solid var(--lavender);
+    transform:rotate(45deg);
+    animation:bounceArrow 1.5s infinite;
+  }
+  @keyframes bounceArrow{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(6px);}}
+  @keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ─── FLOATING ELEMENTS ─── */
+  .float-el{position:absolute;pointer-events:none;will-change:transform;}
+  .balloon{font-size:clamp(32px,5vw,64px);animation:floatBalloon linear infinite;}
+  .star{font-size:clamp(14px,2vw,24px);animation:twinkle ease-in-out infinite;}
+  .petal{font-size:clamp(18px,3vw,36px);animation:driftPetal ease-in-out infinite;}
+  .cloud-el{font-size:clamp(40px,6vw,80px);animation:driftCloud linear infinite;opacity:0.5;}
+  @keyframes floatBalloon{
+    0%{transform:translateY(100vh) rotate(0deg) scale(0.5);opacity:0;}
+    10%{opacity:1;}
+    90%{opacity:1;}
+    100%{transform:translateY(-120px) rotate(15deg) scale(1);opacity:0;}
+  }
+  @keyframes twinkle{0%,100%{transform:scale(1) rotate(0deg);opacity:0.6;}50%{transform:scale(1.4) rotate(20deg);opacity:1;}}
+  @keyframes driftPetal{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(10deg);}}
+  @keyframes driftCloud{from{transform:translateX(-120px);}to{transform:translateX(calc(100vw + 120px));}}
+  @keyframes floatConfetti{
+    0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
+  }
+
+  /* ─── SECTION BASE ─── */
+  .section{
+    padding:100px 20px;
+    position:relative;overflow:hidden;
+  }
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .scene-label{
+    font-family:'Nunito',sans-serif;
+    font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+    color:var(--deep-lavender);opacity:0.6;
+    margin-bottom:12px;
+    display:block;
+  }
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(36px,5vw,64px);
+    font-weight:800;
+    line-height:1.1;
+    margin-bottom:20px;
+  }
+  .section-body{
+    font-size:18px;line-height:1.7;
+    color:var(--text-mid);
+    max-width:640px;
+  }
+
+  /* ─── COUNTDOWN ─── */
+  #countdown{
+    background:linear-gradient(135deg,#FFF0FF,#F0F0FF,#F0FFF8);
+    text-align:center;
+  }
+  #countdown .section-title{
+    background:linear-gradient(135deg,var(--deep-lavender),var(--soft-pink));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    text-align:center;
+  }
+  .countdown-grid{
+    display:flex;gap:24px;justify-content:center;flex-wrap:wrap;
+    margin-top:52px;
+  }
+  .cd-box{
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(12px);
+    border:2px solid rgba(200,180,240,0.3);
+    border-radius:28px;
+    padding:36px 40px;
+    min-width:140px;
+    box-shadow:0 12px 40px rgba(155,137,196,0.15);
+    transition:transform 0.3s;
+  }
+  .cd-box:hover{transform:translateY(-8px);}
+  .cd-val{
+    font-family:'Playfair Display',serif;
+    font-size:72px;font-weight:800;
+    background:linear-gradient(135deg,var(--deep-lavender),var(--soft-pink));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    line-height:1;
+    display:block;
+  }
+  .cd-lbl{
+    font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+    color:var(--text-mid);margin-top:8px;display:block;
+  }
+
+  /* ─── EVENT DETAILS ─── */
+  #details{
+    background:linear-gradient(160deg,#FFF8FF 0%,#F0F8FF 50%,#F8FFF4 100%);
+  }
+  .details-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:28px;margin-top:52px;
+  }
+  .detail-card{
+    background:rgba(255,255,255,0.9);
+    border:2px solid rgba(200,180,240,0.25);
+    border-radius:28px;
+    padding:40px 32px;
+    text-align:center;
+    box-shadow:0 8px 32px rgba(155,137,196,0.1);
+    transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    position:relative;overflow:hidden;
+  }
+  .detail-card::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,transparent,rgba(200,180,240,0.05));
+    opacity:0;transition:opacity 0.4s;
+  }
+  .detail-card:hover{transform:translateY(-10px);box-shadow:0 20px 52px rgba(155,137,196,0.2);}
+  .detail-card:hover::before{opacity:1;}
+  .card-icon{font-size:52px;margin-bottom:20px;display:block;}
+  .card-title{
+    font-family:'Playfair Display',serif;
+    font-size:14px;font-weight:600;
+    text-transform:uppercase;letter-spacing:3px;
+    color:var(--text-mid);margin-bottom:12px;
+  }
+  .card-main{
+    font-family:'Playfair Display',serif;
+    font-size:28px;font-weight:700;
+    color:var(--text-dark);margin-bottom:8px;line-height:1.2;
+  }
+  .card-sub{font-size:14px;color:var(--text-mid);}
+
+  /* ─── MAP / LOCATION ─── */
+  #location{
+    background:linear-gradient(135deg,#FFF5FF,#EFF5FF);
+    text-align:center;
+  }
+  .location-hero-name{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(48px,7vw,96px);
+    background:linear-gradient(135deg,var(--deep-lavender),var(--soft-pink),var(--baby-blue));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-bottom:8px;
+    filter:drop-shadow(0 4px 16px rgba(155,137,196,0.3));
+  }
+  .location-address{
+    font-size:16px;color:var(--text-mid);
+    margin-bottom:40px;letter-spacing:1px;
+  }
+  .map-frame-wrapper{
+    border-radius:32px;overflow:hidden;
+    box-shadow:0 20px 60px rgba(155,137,196,0.25);
+    border:4px solid rgba(255,255,255,0.9);
+    max-width:900px;margin:0 auto;
+    position:relative;
+  }
+  .map-frame-wrapper iframe{width:100%;height:440px;display:block;border:none;}
+  .map-directions-btn{
+    margin-top:28px;
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,var(--baby-blue),var(--mint));
+    color:var(--text-dark);border:none;
+    padding:14px 32px;border-radius:50px;
+    font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;
+    cursor:pointer;text-decoration:none;
+    box-shadow:0 8px 24px rgba(100,200,180,0.3);
+    transition:all 0.3s;
+  }
+  .map-directions-btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(100,200,180,0.4);}
+
+  /* ─── RSVP ─── */
+  #rsvp{
+    background:linear-gradient(135deg,#FFF0F8,#EDE7FF,#E8F8FF);
+    text-align:center;
+    padding:120px 20px;
+  }
+  .rsvp-card{
+    max-width:660px;margin:0 auto;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(20px);
+    border:2px solid rgba(200,180,240,0.35);
+    border-radius:40px;
+    padding:64px 48px;
+    box-shadow:0 24px 80px rgba(155,137,196,0.18);
+    position:relative;overflow:hidden;
+  }
+  .rsvp-card::before{
+    content:'🎉🎀🌸✨🎈💜🌈🍭';
+    font-size:28px;
+    position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+    letter-spacing:8px;opacity:0.25;
+    white-space:nowrap;
+  }
+  .rsvp-title{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(42px,6vw,72px);
+    color:var(--deep-lavender);
+    margin-bottom:16px;
+  }
+  .rsvp-body{
+    font-size:18px;color:var(--text-mid);
+    line-height:1.7;margin-bottom:40px;
+  }
+  .rsvp-deadline{
+    display:inline-block;
+    background:linear-gradient(135deg,var(--yellow),var(--peach));
+    border-radius:50px;
+    padding:10px 24px;
+    font-size:13px;font-weight:700;
+    color:var(--text-dark);
+    margin-bottom:36px;letter-spacing:1px;
+  }
+  .rsvp-btn{
+    display:inline-block;
+    background:linear-gradient(135deg,#C9B8E8,#FFB7C5,#A8D8EA);
+    color:#fff;border:none;
+    padding:20px 56px;border-radius:50px;
+    font-family:'Nunito',sans-serif;font-weight:800;font-size:18px;
+    cursor:pointer;text-decoration:none;
+    box-shadow:0 10px 36px rgba(155,137,196,0.4);
+    transition:all 0.3s;
+    letter-spacing:1px;
+  }
+  .rsvp-btn:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 18px 50px rgba(155,137,196,0.55);}
+
+  /* ─── GIFTS & WISHES ─── */
+  #wishes{
+    background:linear-gradient(160deg,#FFF8F0,#F8F0FF,#F0FFF8);
+    text-align:center;
+  }
+  .wishes-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;margin-top:52px;
+  }
+  .wish-card{
+    background:rgba(255,255,255,0.85);
+    border-radius:28px;padding:36px 28px;
+    border:2px solid rgba(200,180,240,0.2);
+    box-shadow:0 8px 28px rgba(155,137,196,0.1);
+    transition:transform 0.3s;text-align:left;
+  }
+  .wish-card:hover{transform:translateY(-6px);}
+  .wish-icon{font-size:40px;margin-bottom:16px;display:block;}
+  .wish-title{
+    font-family:'Playfair Display',serif;
+    font-size:22px;font-weight:700;
+    color:var(--text-dark);margin-bottom:10px;
+  }
+  .wish-text{font-size:15px;color:var(--text-mid);line-height:1.65;}
+
+  /* ─── FOOTER ─── */
+  footer{
+    background:linear-gradient(135deg,#E8E0FF,#FFE0F0);
+    text-align:center;padding:64px 20px 40px;
+    position:relative;overflow:hidden;
+  }
+  .footer-title{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(32px,5vw,56px);
+    color:var(--deep-lavender);margin-bottom:12px;
+  }
+  .footer-sub{font-size:15px;color:var(--text-mid);margin-bottom:40px;}
+  .footer-confetti-strip{
+    display:flex;justify-content:center;gap:8px;
+    font-size:24px;margin-bottom:32px;letter-spacing:4px;
+    animation:strip 3s ease-in-out infinite;
+  }
+  @keyframes strip{0%,100%{letter-spacing:4px;}50%{letter-spacing:12px;}}
+  .footer-divider{
+    width:80px;height:3px;
+    background:linear-gradient(90deg,var(--lavender),var(--soft-pink));
+    border-radius:2px;margin:0 auto 24px;
+  }
+  .footer-copy{font-size:13px;color:var(--text-mid);opacity:0.7;}
+
+  /* ─── CONFETTI OVERLAY ─── */
+  #confettiOverlay{
+    position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden;
+  }
+  .confetti-piece{
+    position:absolute;
+    top:-20px;
+    width:8px;height:8px;
+    border-radius:2px;
+    animation:floatConfetti linear infinite;
+    will-change:transform,opacity;
+  }
+
+  /* ─── SCENE TRANSITIONS ─── */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease;}
+  .reveal.visible{opacity:1;transform:none;}
+  .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.8s ease,transform 0.8s ease;}
+  .reveal-left.visible{opacity:1;transform:none;}
+  .reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.8s ease,transform 0.8s ease;}
+  .reveal-right.visible{opacity:1;transform:none;}
+
+  /* ─── WAVE DIVIDERS ─── */
+  .wave-top,.wave-bottom{width:100%;overflow:hidden;line-height:0;position:relative;z-index:2;}
+  .wave-top svg,.wave-bottom svg{display:block;}
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:600px){
+    .countdown-grid{gap:14px;}
+    .cd-box{padding:24px 20px;min-width:110px;}
+    .cd-val{font-size:52px;}
+    .rsvp-card{padding:44px 28px;}
+    .details-grid{grid-template-columns:1fr;}
+  }
+
+  /* ─── BABY SHOWER BANNER ─── */
+  .bunting{
+    position:absolute;top:0;left:0;right:0;
+    height:80px;pointer-events:none;z-index:5;
+    overflow:hidden;
+  }
+  .bunting-svg{width:100%;height:80px;}
+
+  /* section gradient blobs */
+  .blob{
+    position:absolute;border-radius:50%;
+    filter:blur(80px);opacity:0.25;pointer-events:none;
+    animation:blobDrift ease-in-out infinite;
+  }
+  @keyframes blobDrift{
+    0%,100%{transform:scale(1) translate(0,0);}
+    33%{transform:scale(1.1) translate(20px,-20px);}
+    66%{transform:scale(0.95) translate(-15px,15px);}
+  }
+</style>
+</head>
+<body>
+
+<!-- MUSIC TOGGLE -->
+<button id="musicBtn" onclick="toggleMusic()">
+  <span class="music-icon">🎵</span>
+  <span id="musicLabel">Play Music</span>
+</button>
+
+<!-- HIDDEN YOUTUBE IFRAME FOR AUDIO -->
+<div id="ytContainer" style="position:fixed;bottom:-200px;left:-200px;opacity:0;pointer-events:none;width:1px;height:1px;">
+  <iframe id="ytPlayer" width="1" height="1"
+    src=""
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- CONFETTI OVERLAY -->
+<div id="confettiOverlay"></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+
+  <!-- floating clouds -->
+  <div class="float-el cloud-el" style="top:8%;left:-80px;animation-duration:28s;animation-delay:0s;">☁️</div>
+  <div class="float-el cloud-el" style="top:18%;left:-80px;animation-duration:38s;animation-delay:5s;">☁️</div>
+  <div class="float-el cloud-el" style="top:60%;left:-80px;animation-duration:32s;animation-delay:10s;font-size:50px;">☁️</div>
+
+  <!-- floating stars & petals -->
+  <div class="float-el star" style="top:15%;left:10%;animation-duration:3s;animation-delay:0.5s;">✨</div>
+  <div class="float-el star" style="top:25%;right:12%;animation-duration:4s;animation-delay:1s;">⭐</div>
+  <div class="float-el star" style="top:70%;left:7%;animation-duration:3.5s;animation-delay:0s;">✨</div>
+  <div class="float-el star" style="top:80%;right:8%;animation-duration:4.5s;animation-delay:2s;">⭐</div>
+  <div class="float-el petal" style="top:35%;left:5%;animation-duration:5s;">🌸</div>
+  <div class="float-el petal" style="top:55%;right:6%;animation-duration:6s;animation-delay:1s;">🌷</div>
+  <div class="float-el petal" style="top:20%;left:30%;animation-duration:4.5s;animation-delay:2s;">🌼</div>
+
+  <!-- balloons -->
+  <div class="float-el balloon" style="left:8%;animation-duration:12s;animation-delay:0s;">🎈</div>
+  <div class="float-el balloon" style="left:20%;animation-duration:15s;animation-delay:3s;">🩷</div>
+  <div class="float-el balloon" style="left:75%;animation-duration:13s;animation-delay:1.5s;">💜</div>
+  <div class="float-el balloon" style="left:88%;animation-duration:16s;animation-delay:5s;">🎈</div>
+  <div class="float-el balloon" style="left:50%;animation-duration:14s;animation-delay:2s;">💙</div>
+  <div class="float-el balloon" style="left:35%;animation-duration:11s;animation-delay:7s;">🩵</div>
+  <div class="float-el balloon" style="left:62%;animation-duration:17s;animation-delay:4s;">🩷</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">✨ You're Invited ✨</div>
+    <h1 class="hero-title">Baby Shower</h1>
+    <p class="hero-subtitle-script">Confetti Dreamland</p>
+    <p class="hero-tagline">A new little star is on the way — come celebrate with us 🌟</p>
+    <div class="hero-date-pill">
+      <div class="date-item">
+        <span class="val">26</span>
+        <span class="lbl">June</span>
+      </div>
+      <div class="date-sep"></div>
+      <div class="date-item">
+        <span class="val">2026</span>
+        <span class="lbl">Year</span>
+      </div>
+      <div class="date-sep"></div>
+      <div class="date-item">
+        <span class="val">5:00</span>
+        <span class="lbl">PM</span>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScymAvIinLsnhTFgIwLuxPcO1SzUXzGR3p-ICe6t2EbpqLGsQ/viewform?usp=header" target="_blank" class="btn-primary">💌 RSVP Now</a>
+      <a href="#location" class="btn-secondary">📍 Find Venue</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-top">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60"><path fill="#FFF0FF" fill-opacity="0.6" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/></svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- COUNTDOWN -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="countdown" class="section">
+  <div class="blob" style="width:400px;height:400px;background:var(--lavender);top:-100px;right:-100px;animation-duration:8s;"></div>
+  <div class="blob" style="width:300px;height:300px;background:var(--soft-pink);bottom:-80px;left:-80px;animation-duration:10s;animation-delay:2s;"></div>
+
+  <div class="section-inner">
+    <span class="scene-label reveal">⏳ Counting Down</span>
+    <h2 class="section-title reveal" style="text-align:center;">The Big Day Arrives In</h2>
+    <div class="countdown-grid">
+      <div class="cd-box reveal" style="transition-delay:0.1s;"><span class="cd-val" id="cd-days">00</span><span class="cd-lbl">Days</span></div>
+      <div class="cd-box reveal" style="transition-delay:0.2s;"><span class="cd-val" id="cd-hours">00</span><span class="cd-lbl">Hours</span></div>
+      <div class="cd-box reveal" style="transition-delay:0.3s;"><span class="cd-val" id="cd-mins">00</span><span class="cd-lbl">Minutes</span></div>
+      <div class="cd-box reveal" style="transition-delay:0.4s;"><span class="cd-val" id="cd-secs">00</span><span class="cd-lbl">Seconds</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60"><path fill="#F0F8FF" fill-opacity="0.8" d="M0,20 C480,60 960,0 1440,40 L1440,60 L0,60 Z"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- EVENT DETAILS -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="details" class="section">
+  <div class="blob" style="width:350px;height:350px;background:var(--mint);top:0;left:-100px;animation-duration:9s;"></div>
+
+  <div class="section-inner">
+    <span class="scene-label reveal">🎊 The Details</span>
+    <h2 class="section-title reveal">Everything You<br><em>Need to Know</em></h2>
+    <p class="section-body reveal" style="margin-bottom:0;">Every detail of this magical celebration, laid out with love — so you can simply show up, smile, and enjoy every moment.</p>
+
+    <div class="details-grid">
+      <div class="detail-card reveal" style="transition-delay:0.1s;">
+        <span class="card-icon">📅</span>
+        <div class="card-title">Date</div>
+        <div class="card-main">Friday<br>26 June 2026</div>
+        <div class="card-sub">Save the date!</div>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:0.2s;">
+        <span class="card-icon">⏰</span>
+        <div class="card-title">Time</div>
+        <div class="card-main">5:00 PM</div>
+        <div class="card-sub">Doors open from 4:45 PM</div>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:0.3s;">
+        <span class="card-icon">👨‍👩‍👧‍👦</span>
+        <div class="card-title">Hosted at</div>
+        <div class="card-main">Suresh Uncle's House</div>
+        <div class="card-sub">Family & friends welcome</div>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:0.4s;">
+        <span class="card-icon">🎀</span>
+        <div class="card-title">Dress Code</div>
+        <div class="card-main">Pastels & Soft Colors</div>
+        <div class="card-sub">Come looking cheerful!</div>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:0.5s;">
+        <span class="card-icon">🍰</span>
+        <div class="card-title">What to Expect</div>
+        <div class="card-main">Food, Fun & Love</div>
+        <div class="card-sub">Games, cake & lots of joy</div>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:0.6s;">
+        <span class="card-icon">🌟</span>
+        <div class="card-title">Special Guest</div>
+        <div class="card-main">Baby on the Way!</div>
+        <div class="card-sub">The star of the show 💕</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60"><path fill="#FFF5FF" fill-opacity="0.8" d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- LOCATION -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="location" class="section">
+  <div class="blob" style="width:500px;height:500px;background:var(--baby-blue);top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:12s;opacity:0.15;"></div>
+
+  <div class="section-inner" style="text-align:center;">
+    <span class="scene-label reveal">📍 Venue</span>
+    <h2 class="section-title reveal" style="text-align:center;margin-bottom:8px;">Find Us Here</h2>
+
+    <div class="location-hero-name reveal">Suresh Uncle's House</div>
+    <p class="location-address reveal">Al Khobar · Eastern Province, Saudi Arabia</p>
+
+    <div class="map-frame-wrapper reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.547!2d50.2!3d26.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDMw!5e0!3m2!1sen!2ssa!4v1234567890"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <a href="https://maps.google.com" target="_blank" class="map-directions-btn reveal">
+      🗺️ Get Directions
+    </a>
+  </div>
+</section>
+
+<div class="wave-top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60"><path fill="#FFF0F8" fill-opacity="0.9" d="M0,10 C480,60 960,0 1440,50 L1440,60 L0,60 Z"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- GIFTS & WISHES -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="wishes" class="section">
+  <div class="section-inner">
+    <span class="scene-label reveal" style="text-align:center;display:block;">🎁 Gifts & Wishes</span>
+    <h2 class="section-title reveal" style="text-align:center;">Shower the Baby<br><em>with Love</em></h2>
+    <p class="section-body reveal" style="text-align:center;margin:0 auto 0;">Your presence is the greatest gift. But if you'd like to bring a little something, here are a few heartfelt ideas.</p>
+
+    <div class="wishes-grid">
+      <div class="wish-card reveal" style="transition-delay:0.1s;">
+        <span class="wish-icon">🍼</span>
+        <div class="wish-title">Baby Essentials</div>
+        <div class="wish-text">Diapers, onesies, blankets, bibs — all the cozy little things a newborn needs to start their journey.</div>
+      </div>
+      <div class="wish-card reveal" style="transition-delay:0.2s;">
+        <span class="wish-icon">📚</span>
+        <div class="wish-title">Books & Stories</div>
+        <div class="wish-text">A beloved children's book signed with a message — a treasure that will be read for years to come.</div>
+      </div>
+      <div class="wish-card reveal" style="transition-delay:0.3s;">
+        <span class="wish-icon">🧸</span>
+        <div class="wish-title">Soft Toys & Comfort</div>
+        <div class="wish-text">A snuggly teddy, a soft rattle, or a cozy lovey to accompany the baby through sweet dreams.</div>
+      </div>
+      <div class="wish-card reveal" style="transition-delay:0.4s;">
+        <span class="wish-icon">💌</span>
+        <div class="wish-title">Letters of Love</div>
+        <div class="wish-text">Write a wish for the baby to open on their 18th birthday — the most timeless gift of all.</div>
+      </div>
+      <div class="wish-card reveal" style="transition-delay:0.5s;">
+        <span class="wish-icon">🎨</span>
+        <div class="wish-title">Art & Creativity</div>
+        <div class="wish-text">Finger paints, crayons, activity mats — spark the imagination of a tiny creative soul.</div>
+      </div>
+      <div class="wish-card reveal" style="transition-delay:0.6s;">
+        <span class="wish-icon">💕</span>
+        <div class="wish-title">Just Your Presence</div>
+        <div class="wish-text">Honestly? Your smile, your joy, and your love for this family is the most beautiful gift you could bring.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60"><path fill="#EDE7FF" fill-opacity="0.6" d="M0,30 C600,60 900,0 1440,30 L1440,60 L0,60 Z"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- RSVP -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="rsvp" class="section">
+  <div class="blob" style="width:500px;height:500px;background:var(--lavender);top:-150px;right:-150px;animation-duration:10s;"></div>
+  <div class="blob" style="width:400px;height:400px;background:var(--soft-pink);bottom:-120px;left:-120px;animation-duration:13s;animation-delay:3s;"></div>
+
+  <div class="rsvp-card reveal">
+    <div class="rsvp-title">Will You Join Us? 🌸</div>
+    <p class="rsvp-body">
+      We'd absolutely love to have you celebrate with us as we welcome this precious new life. Every face, every laugh, every hug matters — especially yours.
+    </p>
+    <div class="rsvp-deadline">📌 Please RSVP by 20 June 2026</div><br>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScymAvIinLsnhTFgIwLuxPcO1SzUXzGR3p-ICe6t2EbpqLGsQ/viewform?usp=header" target="_blank" class="rsvp-btn">
+      💌 &nbsp;RSVP Here
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-confetti-strip">🎉🎀🌸✨🎈💜🌈🍭🎊🌟💕</div>
+  <div class="footer-title">Confetti Dreamland</div>
+  <p class="footer-sub">Celebrating the tiniest, most wonderful new chapter ✨</p>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">Baby Shower · 26 June 2026 · Suresh Uncle's House · 5:00 PM</p>
+  <p class="footer-copy" style="margin-top:8px;opacity:0.5;">Made with 💕 and a whole lot of confetti</p>
+</footer>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+/* ─── CONFETTI ─── */
+(function(){
+  const colors=['#FFB7C5','#C9B8E8','#A8D8EA','#B5EAD7','#FFDAB9','#FFF3B0','#D4A8E0'];
+  const overlay=document.getElementById('confettiOverlay');
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.cssText=`
+      left:${Math.random()*100}%;
+      width:${6+Math.random()*8}px;
+      height:${6+Math.random()*8}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${6+Math.random()*10}s;
+      animation-delay:${Math.random()*8}s;
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    overlay.appendChild(el);
+  }
+})();
+
+/* ─── HERO CANVAS PARTICLE FIELD ─── */
+(function(){
+  const canvas=document.getElementById('heroCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[];
+  const colors=['rgba(200,180,240,','rgba(255,183,197,','rgba(168,216,234,','rgba(181,234,215,','rgba(255,218,185,'];
+
+  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+
+  for(let i=0;i<80;i++){
+    particles.push({
+      x:Math.random()*2000,y:Math.random()*2000,
+      r:1+Math.random()*3,
+      dx:(Math.random()-0.5)*0.4,
+      dy:(Math.random()-0.5)*0.4,
+      a:0.3+Math.random()*0.5,
+      c:colors[Math.floor(Math.random()*colors.length)]
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x%W,p.y%H,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.c+p.a+')';
+      ctx.fill();
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ─── COUNTDOWN ─── */
+(function(){
+  const target=new Date('2026-06-26T17:00:00');
+  function update(){
+    const now=new Date();
+    const diff=target-now;
+    if(diff<=0){
+      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id=>{
+        document.getElementById(id).textContent='00';
+      });
+      return;
+    }
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor((diff%86400000)/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
+  }
+  update();setInterval(update,1000);
+})();
+
+/* ─── SCROLL REVEAL ─── */
+(function(){
+  const els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+    });
+  },{threshold:0.12});
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ─── MUSIC ─── */
+let musicPlaying=false;
+function toggleMusic(){
+  const iframe=document.getElementById('ytPlayer');
+  const label=document.getElementById('musicLabel');
+  const icon=document.querySelector('.music-icon');
+  if(!musicPlaying){
+    iframe.src='https://www.youtube.com/embed/kVjDXn2P_5w?autoplay=1&loop=1&playlist=kVjDXn2P_5w&controls=0&rel=0&modestbranding=1&enablejsapi=1';
+    label.textContent='Pause Music';
+    icon.textContent='🎶';
+    musicPlaying=true;
+  } else {
+    iframe.src='';
+    label.textContent='Play Music';
+    icon.textContent='🎵';
+    musicPlaying=false;
+  }
+}
+
+/* ─── PARALLAX ─── */
+window.addEventListener('scroll',function(){
+  const scrollY=window.scrollY;
+  document.querySelectorAll('.blob').forEach((b,i)=>{
+    const speed=(i%2===0?0.08:0.05);
+    b.style.transform=`translate(0,${scrollY*speed}px)`;
+  });
+});
+</script>
+</body>
+</html>
